@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+h1{
+    text-align: center;
+    margin-top: 270px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 800;
+}
+
+table{
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+td button{
+    background-color: #97CBAA;
+    padding: 8px 100px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-top: 15px;  
+    font-family: 'Prompt', sans-serif;
+    font-weight: 800;
+}
