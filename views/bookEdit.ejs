@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>도서 신청 목록</title>
+    <title>도서 추가 수정</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         
@@ -103,40 +104,28 @@
             color: #8BD9B3;
         }
     </style>
+
 </head>
 <body>
-    <% if(is_logined==false) {%>
-        <table width="30%">
-            <tr>
-                <td><a href="/">Home</a></td>
-                <td><a href="/login">login</a></td>
-                <td><a href="/register">register</a></td>
-            </tr>
-        </table>
-        <% } else { %>
-            <%= name %> 님 환영합니다!👏
-            <a href="/logout" class="logout">LOGOUT</a>
+    
 
+    <a href="/logout" class="logout">LOGOUT</a>
     <div class="all">
-    <h1>도서 신청</h1>
-    <p class="sub">신청 하고 싶은 도서의 상세 정보를 작성해주세요.</p>
-    <form action="/insert" method="post">
+        <h1>도서 정보 수정</h1>
+        <p class="sub">도서 정보를 수정해주세요.</p>
         <div class="input-style">
-
-            <p class="form-font">신청자 (수정불가) </p><input type="text" name="name" value="<%=name%>" readonly>
-            <!-- <p class="input-name" type ="text" name="name"><%= name %></p> -->
-            <p class="form-font">도서 이름</p><input type="text" name="bookname", required>
-            <p class="form-font">출판사 </p> <input type="text" name="publisher", required>
-            <p class="form-font">가격 </p> <input type="text" name="price", required> <br>
-            
+            <form action="/bookUpdate/<%=book[0].id %>" method="post">
+                <p class="form-font">도서 이름</p> <input type="text" name="name" value="<%=book[0].name %>" required><br>
+                <p class="form-font">작가</p><input type="text" name="bookname" value="<%=book[0].author %>" required><br>
+                <p class="form-font">출판사</p><input type="text" name="publisher" value="<%=book[0].publisher%>"required><br>
+                <p class="form-font">가격</p> <input type="text" name="price" value="<%=book[0].price %>" required><br>
+                <div class="btn-wrapper">
+                    <button type="button" class="cancel" onclick="location.href='/bookList'">목 록</button> 
+                    <button type="submit" class="submit">수 정</button>
+                </form>   
+                </div>
         </div>
         
-        <div class="btn-wrapper">
-            <button type="button" class="cancel" onclick="location.href='/list'">목 록</button> 
-            <button type="submit" class="submit">신 청</button>
-        </div>
-    </form>  
-    </div> 
-    <% } %>
+    </div>
 </body>
 </html>

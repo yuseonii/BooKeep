@@ -47,7 +47,7 @@ app.post('/register', (req, res) => {
     con.query('select * from users where id=?', [id], (err, data) => {
         if (data.length == 0) {
             console.log('회원가입 성공');
-            con.query('insert into users(name, id, pw) values(?,?,?)', [name, id, password]);
+            con.query('insert into users(name, id, pw) values(?,?,?)', [name, id, pw]);
             res.send('<script>alert("회원가입 성공"); location.href="/" </script> ');
         }
         else {
@@ -85,7 +85,7 @@ app.post('/login', (req, res) => {
                 res.render('insert', {
                     name: data[0].name,
                     id: data[0].id,
-                    age: data[0].pw,
+                    pw: data[0].pw,
                     is_logined: true
                 });
             });
@@ -164,3 +164,50 @@ app.post('/update/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`${port}번 포트에서 서버 대기중입니다.`);
 });
+
+
+app.get("/bookList", (req, res) => {
+    const sql = "select * from book";
+    con.query(sql, function (err, result, fields) {
+      if (err) throw err;
+      res.render("bookList", { bookList: result });
+    });
+  });
+  
+  app.post("/book_insert", (req, res) => {
+    const sql = "insert into book set ?";
+    con.query(sql, req.body, function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      res.redirect("/book_insert");
+    });
+  });
+  
+  
+  app.get('/bookDelete/:id', (req, res) => {
+    const sql = "delete from book where id = ?";
+    con.query(sql, [req.params.id], function (err, result, fields) {
+        if(err) throw err;
+        console.log(result);
+        res.redirect('/bookList');
+    })
+})
+  
+  
+
+  app.get('/bookEdit/:id', (req, res) => {
+    const sql = 'select * from book where id = ?';
+    con.query(sql, [req.params.id], function (err, result, fields) {
+        if (err) throw err;
+        res.render('bookEdit', {book_re : result});
+    })
+})
+
+app.post('/bookUpdate/:id', (req, res) => {
+    const sql = 'update book set ? where id = ' + req.params.id;
+    con.query(sql, req.body, function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.redirect('/bookList');
+    })
+})

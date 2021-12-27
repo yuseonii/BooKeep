@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>도서 목록</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        list-style: none;
+      }
+
+      .all {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 120px;
+      }
+      .sub {
+        text-align: center;
+        color: #9a9a9a;
+        margin-top: 10px;
+        margin-bottom: 50px;
+      }
+      a {
+        text-decoration: none;
+        color: #ffffff;
+      }
+      button {
+        border: none;
+        border-radius: 5px;
+        font-size: 17px;
+        font-weight: bold;
+        padding: 6px 20px;
+      }
+      .submit {
+        background-color: #8bd9b3;
+        color: #ffffff;
+        margin-top: 25px;
+        font-family: "Prompt", sans-serif;
+        font-size: 15px;
+        font-size: 500;
+      }
+      .cancel {
+        background-color: #d1ded8;
+        margin-top: 25px;
+        margin-right: 5px;
+        font-family: "Prompt", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .form-font {
+        font-size: 15px;
+        font-weight: 600;
+        margin-top: 13px;
+        margin-bottom: 0;
+      }
+      input {
+        width: 245px;
+        height: 34px;
+        background-color: #e8e8e8;
+        border: none;
+        border-radius: 5px;
+        padding-left: 8px;
+        font-size: 14px;
+        margin-top: 2px;
+      }
+
+      .input-name {
+        width: 245px;
+        height: 30px;
+        background-color: #e8e8e8;
+        border: none;
+        border-radius: 5px;
+        padding-left: 8px;
+        font-size: 14px;
+        margin-top: 2px;
+        font-family: "Prompt", sans-serif;
+        font-size: 14px;
+        padding-top: 9px;
+      }
+
+      .logo-img {
+        width: 80px;
+        height: 90px;
+      }
+      .btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .logout {
+        font-family: "Prompt", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: #8bd9b3;
+      }
+    </style>
+  </head>
+  <body>
+    <% if(is_logined==false) {%>
+    <table width="30%">
+      <tr>
+        <td><a href="/">Home</a></td>
+        <td><a href="/login">login</a></td>
+        <td><a href="/register">register</a></td>
+      </tr>
+    </table>
+    <% } else { %> <%= name %> 님 환영합니다!👏
+    <a href="/logout" class="logout">LOGOUT</a>
+
+    <div class="all">
+      <h1>도서 추가</h1>
+      <p class="sub">도서목록에 추가할 도서를 입력하세요.</p>
+      <form action="/book_insert" method="post">
+        <div class="input-style">
+          <p class="form-font">도서 이름</p>
+          <input type="text" name="bookName" value="<%=name%>" , required />
+          <p class="form-font">작가</p>
+          <input type="text" name="author" , required />
+          <p class="form-font">출판사</p>
+          <input type="text" name="publisher" , required />
+          <p class="form-font">가격</p>
+          <input type="text" name="price" , required /> <br />
+        </div>
+
+        <div class="btn-wrapper">
+          <button
+            type="button"
+            class="cancel"
+            onclick="location.href='/book_list'"
+          >
+            목 록
+          </button>
+          <button type="submit" class="submit">추 가</button>
+        </div>
+      </form>
+    </div>
+    <% } %>
+  </body>
+</html>

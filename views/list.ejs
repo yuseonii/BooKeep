@@ -43,6 +43,7 @@
             text-align: center;
             color: #9A9A9A;
             margin-top: 10px;
+            font-style: italic;
         }
         .book{
             text-align: center;
@@ -121,7 +122,10 @@
             <% });  %>
         </table>
         
-        <div class="button-style"><button type="button" class="go-insert" onclick="location.href='/login'">도서신청</button> </div>
+        <div class="button-style">
+            <button type="button" style ="margin-right: 15px;" class="go-insert" onclick="location.href='/login'">도서신청</button> 
+            <button type="button" class="go-insert" onclick="location.href='/bookList'">도서관리</button>    
+        </div>
         
     </body>
 </html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      table,
+      td,
+      th {
+        border: 1px solid black;
+      }
+      table {
+        width: 30%;
+        border-collapse: collapse;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 50px;
+      }
+      tr th {
+        padding: 5px 20px;
+      }
+      tr td {
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 160px;
+      }
+      p {
+        text-align: center;
+        color: #9a9a9a;
+        margin-top: 10px;
+        font-style: italic;
+      }
+      .book {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        padding: 6px 15px;
+        font-weight: bold;
+        background-color: #8bd9b3;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        letter-spacing: 2px;
+      }
+      .button-style {
+        text-align: center;
+      }
+      .logo-img {
+        width: 80px;
+        height: 90px;
+      }
+      .logout {
+        font-family: "Prompt", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: #8bd9b3;
+        margin-left: 10px;
+        margin-top: 20px;
+      }
+
+      .go-insert {
+        background-color: #8bd9b3;
+        font-family: "Prompt", sans-serif;
+        font-size: 15px;
+        font-weight: 800;
+        border: none;
+        padding: 3px 15px;
+        border-radius: 5px;
+        color: white;
+        letter-spacing: 0.1em;
+      }
+
+      .button-style {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/logout" class="logout">LOGOUT</a>
+    <h1>도서 목록</h1>
+    <p>현재 도서관에 있는 도서를 확인하고 삭제할 수 있습니다.</p>
+    <table>
+      <tr>
+        <th>도서 이름</th>
+        <th>작가</th>
+        <th>출판사</th>
+        <th>가격</th>
+      </tr>
+      <% bookList.forEach(function (value) { %>
+      <tr>
+        <td><%=value.name %></td>
+        <td><%=value.author %></td>
+        <td><%=value.publisher %></td>
+        <td><%=value.price %></td>
+        <td><a href="/bookDelete/<%= value.id %>">삭제</a></td>
+      </tr>
+      <% }); %>
+    </table>
+
+    <div class="button-style">
+      <button type="button" class="go-insert" onclick="location.href='/login'">
+        도서신청
+      </button>
+    </div>
+  </body>
+</html>
